@@ -10,19 +10,19 @@ let cronometroIndex;
 btnPlay.addEventListener("click", play);
 btnPause.addEventListener("click", pause);
 btnReset.addEventListener("click", reset);
-cronometroEnPantalla.addEventListener("onload", cronometroActualizado);
 
 function cronometroActualizado() { cronometroEnPantalla.innerHTML = `${horasActuales}:${minutosActuales}:${segundosActuales}` }
 
 
-
-
-
 function play() {
-       cronometroIndex = setInterval(cronometro, 1000); 
+    if(bandera === 0){
+        cronometroIndex = setInterval(cronometro, 1000); 
+        bandera++;
+    }
 }
 function pause() {
     clearInterval(cronometroIndex);
+    bandera--;
 }
 function reset() {
     segundosActuales = 0;
