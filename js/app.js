@@ -5,7 +5,7 @@ const btnReset = document.getElementById("btnReset");
 let segundosActuales = 0;
 let minutosActuales = 0;
 let horasActuales = 0;
-let bandera = 0;
+let bandera = true;
 let cronometroIndex;
 btnPlay.addEventListener("click", play);
 btnPause.addEventListener("click", pause);
@@ -56,20 +56,21 @@ function cronometro() {
 }
 
 function play() {
-    if (bandera === 0) {
+    if (bandera === true) {
         cronometroIndex = setInterval(cronometro, 1000);
-        bandera++;
+        bandera = false;
     }
 }
 function pause() {
     clearInterval(cronometroIndex);
-    bandera--;
+    bandera = true;
 }
 function reset() {
     segundosActuales = 0;
     minutosActuales = 0;
     horasActuales = 0;
     cronometroActualizado();
+    pause();
 }
 
 
