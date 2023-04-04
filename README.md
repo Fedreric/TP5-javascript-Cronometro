@@ -1,8 +1,9 @@
-# Trabajo practico N°5: Javascript - Reloj
+# Trabajo practico N°5: Javascript - Cronometro
 
 ![javascript](https://soyhorizonte.com/wp-content/uploads/2020/10/Javascript-by-SoyHorizonte.jpg)
 
-Ejercicio 4 del TP N°5: Reloj, es un programa que tiene un reloj en tiempo real.
+Ejercicio 5 del TP N°5: cronometro.
+Es un cronometro virtual que te permite, arrancar, pausar y resetear.
 
 ## Requisitos ✅
 
@@ -15,9 +16,9 @@ Ejercicio 4 del TP N°5: Reloj, es un programa que tiene un reloj en tiempo real
 ## Para clonar el repositorio 💻
 
 ```bash
-git clone https://github.com/Fedreric/TP5-javascript-Reloj.git
+git clone https://github.com/Fedreric/TP5-javascript-Cronometro.git
 ```
 ## Sitio Web 💻
-https://reloj-fede39i.netlify.app/
+https://cronometro-fede39i.netlify.app/
 ## Autor 👨‍💻
  Federico Luciano Ledesma [GitHub](https://github.com/Fedreric)
