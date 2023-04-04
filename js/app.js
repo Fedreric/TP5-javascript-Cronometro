@@ -6,7 +6,7 @@ let segundosActuales = 50;
 let minutosActuales = 59;
 let horasActuales = 0;
 let bandera = 0;
-
+let cronometroIndex;
 btnPlay.addEventListener("click", play);
 btnPause.addEventListener("click", pause);
 btnReset.addEventListener("click", reset);
@@ -19,14 +19,16 @@ function cronometroActualizado() { cronometroEnPantalla.innerHTML = `${horasActu
 
 
 function play() {
-    let segundosI = setInterval(cronometro, 1000);
+       cronometroIndex = setInterval(cronometro, 1000); 
 }
 function pause() {
-    bandera++;
-    console.log(bandera);
+    clearInterval(cronometroIndex);
 }
 function reset() {
-    cronometroEnPantalla.innerText = `Estoy en reset`
+    segundosActuales = 0;
+    minutosActuales = 0;
+    horasActuales = 0;
+    cronometroActualizado();
 }
 
 function cronometro() {
