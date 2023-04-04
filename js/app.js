@@ -1,54 +1,75 @@
-function obtenerHora() {
-    //obtener la fecha actual
-    let fechaActual = new Date();
-    const dia = fechaActual.getDate(); //1-31
-    const diaSemana = fechaActual.getDay(); //0-6
-    const mes = fechaActual.getMonth(); //0-11
-    const año = fechaActual.getFullYear(); //2023
-    let pFecha = document.getElementById('fecha');
-    let pHora = document.getElementById('hora');
-    let tipoHorario = 'AM'
-    const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
-    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+const cronometroEnPantalla = document.getElementById("cronometro");
+const btnPlay = document.getElementById("btnPlay");
+const btnPause = document.getElementById("btnPause");
+const btnReset = document.getElementById("btnReset");
+let segundosActuales = 0;
+let minutosActuales = 0;
+let horasActuales = 0;
+let bandera = 0;
+let cronometroIndex;
+btnPlay.addEventListener("click", play);
+btnPause.addEventListener("click", pause);
+btnReset.addEventListener("click", reset);
 
-    pFecha.innerHTML = `${dias[diaSemana]} ${dia} de ${meses[mes]} del ${año}`
-    pHora.innerHTML = `${hora()}:${minutos()}:${segundos()} ${tipoHorario}`
-
-    function hora() {
-        let horaActual = fechaActual.getHours()
-        let horaPm;
-        if (horaActual === 12) {
-            tipoHorario = 'PM';
-            return horaActual;
-        } else if (horaActual > 12) {
-            horaPm = '0' + (horaActual - 12);
-            tipoHorario = 'PM';
-            return horaPm;
+function cronometroActualizado() {
+    function segundos() {
+        let segundos0;
+        if (segundosActuales < 10) {
+            segundos0 = `0${segundosActuales}`
+            return segundos0;
         } else {
-            return horaActual;
+            return segundosActuales;
         }
     }
     function minutos() {
-        let minutosActual = fechaActual.getMinutes();
-        let primerosMinutos;
-        if (minutosActual < 10) {
-            primerosMinutos = '0' + (minutosActual);
-            return primerosMinutos;
+        let minutos0;
+        if (minutosActuales < 10) {
+            minutos0 = `0${minutosActuales}`
+            return minutos0;
         } else {
-            return minutosActual;
+            return minutosActuales;
         }
     }
-    function segundos() {
-        let segundosActual = fechaActual.getSeconds();
-        let primerosSegundos;
-        if (segundosActual < 10) {
-            primerosSegundos = '0' + (segundosActual);
-            return primerosSegundos;
+    function horas() {
+        let horas0;
+        if (horasActuales < 10) {
+            horas0 = `0${horasActuales}`
+            return horas0;
         } else {
-            return segundosActual;
+            return horasActuales;
         }
     }
-
+    cronometroEnPantalla.innerHTML = `${horas()}:${minutos()}:${segundos()}`
 }
 
-setInterval(obtenerHora, 1000)
+function cronometro() {
+    cronometroActualizado();
+    segundosActuales++;
+    if (segundosActuales === 60) {
+        minutosActuales++;
+        segundosActuales = 0;
+    }
+    if (minutosActuales === 60) {
+        horasActuales++;
+        minutosActuales = 0;
+    }
+}
+
+function play() {
+    if (bandera === 0) {
+        cronometroIndex = setInterval(cronometro, 1000);
+        bandera++;
+    }
+}
+function pause() {
+    clearInterval(cronometroIndex);
+    bandera--;
+}
+function reset() {
+    segundosActuales = 0;
+    minutosActuales = 0;
+    horasActuales = 0;
+    cronometroActualizado();
+}
+
+
